@@ -1,26 +1,20 @@
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { fetchWeatherData, selectWeather } from "./weatherSlice";
+import isEmpty from 'lodash/isEmpty';
+import { useAppSelector } from "../../app/hooks";
+import { selectWeather } from "./weatherSlice";
 import styles from './Weather.module.css';
-import { Units } from "../../types";
 import { getUnitsSymbol } from "./helpers";
+import { selectSearch } from "../search/searchSlice";
 
-interface Props {
-    city: string;
-    units?: Units;
-}
-
-export function Weather (props: Props): JSX.Element {
-    const dispatch = useAppDispatch()
+export function Weather (): JSX.Element {
     const {loading, weather } = useAppSelector(selectWeather);
 
-    const {city, units = 'metric'} = props;
+    const {city, units = 'metric'} = useAppSelector(selectSearch);
 
-    useEffect(() => {
-        dispatch(fetchWeatherData([city, units]))
-    }, [])
+    if (loading) return <div className={styles.message}>Loading...</div> 
 
-    if (loading) return <div>Loading...</div> 
+    if(isEmpty(weather)) {
+        return <div className={styles.message}>No Results. Please try again...</div>
+    }
 
     return (
         <div className={styles.weather}>

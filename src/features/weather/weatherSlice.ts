@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { WeatherData } from "../../types";
+import { SearchParams, WeatherData } from "../../types";
 import { fetchWeatherApi } from "./weatherApi";
 
 
@@ -19,7 +19,7 @@ const initialState: WeatherState = {
 
 export const fetchWeatherData = createAsyncThunk(
     'weather/fetchWeatherData',
-    async ([city, units]: Parameters<typeof fetchWeatherApi>) => {
+    async ({city, units}: SearchParams) => {
 
         const response = await fetchWeatherApi(city, units);
 

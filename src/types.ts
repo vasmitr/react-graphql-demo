@@ -26,3 +26,8 @@ export interface WeatherData {
         humidity: number;
     };
 };
+
+export interface SearchParams {
+    city: string;
+    units?: Units;
+}

@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
-import { fetchWeatherData } from './features/weather/weatherSlice';
-import { useAppDispatch } from './app/hooks';
 import { Weather } from './features/weather/Weather';
+import { Search } from './features/search/Search';
 
 function App() {
 
   return (
     <div className="App">
+      <h1>Weather by city</h1>
+      <Search />
       <Weather city="Izmir"/>
     </div>
   );

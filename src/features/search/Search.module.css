@@ -1,0 +1,9 @@
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.select, .button {
+    margin-left: 0.5rem;
+}

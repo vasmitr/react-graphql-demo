@@ -2,13 +2,15 @@ import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
-import { fetchWeatherApi } from './features/weather/weatherApi';
+import { fetchWeatherData } from './features/weather/weatherSlice';
+import { useAppDispatch } from './app/hooks';
 
 function App() {
 
+  const dispatch = useAppDispatch()
+
   const fetchApi = async () => {
-    const res = await fetchWeatherApi('Izmir');
-    console.log(res)
+    return dispatch(fetchWeatherData(['Izmir']))
   };
 
   useEffect(() => {

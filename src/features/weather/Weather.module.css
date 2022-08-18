@@ -1,0 +1,17 @@
+.weather {
+
+}
+
+.temperature {
+
+}
+
+.temperatureItems, .otherItems {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: center;
+    width: 300px;
+    margin: 30px auto;
+}

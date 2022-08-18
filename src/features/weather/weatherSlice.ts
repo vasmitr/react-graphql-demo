@@ -40,6 +40,7 @@ export const weatherSlice = createSlice({
           })
           .addCase(fetchWeatherData.fulfilled, (state, action) => {
             state.success = true;
+            state.loading = false;
             state.weather = action.payload;
           })
           .addCase(fetchWeatherData.rejected, (state) => {
@@ -49,7 +50,7 @@ export const weatherSlice = createSlice({
       },
     });
 
-    export const selectWeather = (state: RootState) => state.weather.weather;
+    export const selectWeather = (state: RootState) => state.weather;
 
 
     export default weatherSlice.reducer;

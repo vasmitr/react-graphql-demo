@@ -1,3 +1,9 @@
 .App {
   text-align: center;
+  height: 100vh;
+  background: radial-gradient(#65B8FC, transparent);
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 1.2rem;
+
 }

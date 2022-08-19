@@ -12,3 +12,16 @@
     font-size: 2rem;
     margin-top: 1rem;
 }
+
+input, select, button {
+    background: #2D5270;
+    color: white;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    border: 0px;
+    padding: 5px;
+  }
+  
+  button {
+    background: #131B70;
+  }

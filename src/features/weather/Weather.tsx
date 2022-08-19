@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import { useAppSelector } from "../../app/hooks";
 import { selectWeather } from "./weatherSlice";
 import styles from './Weather.module.css';
-import { getUnitsSymbol } from "./helpers";
+import { getClouds, getUnitsSymbol, getWindDirection } from "./helpers";
 import { selectSearch } from "../search/searchSlice";
 
 export function Weather (): JSX.Element {
@@ -16,14 +16,20 @@ export function Weather (): JSX.Element {
         return <div className={styles.message}>No Results. Please try again...</div>
     }
 
+    const [cloudsIcon, cloudsText] = getClouds(weather?.clouds.all);
+
     return (
         <div className={styles.weather}>
             <div>
                 <h3>{city}</h3>
+                <div>
+                    <span>{cloudsIcon} </span>
+                    <span>{cloudsText}</span>
+                </div>
             </div>
             <div className={styles.temperature}>
                 <div>
-                    <p>{ weather?.temperature.actual } { getUnitsSymbol(units)}</p>
+                    <p>&#x1F321; { weather?.temperature.actual } { getUnitsSymbol(units)}</p>
                     <div className={styles.temperatureItems}>
                         <div>
                             <span>Feels Like: </span>
@@ -48,16 +54,17 @@ export function Weather (): JSX.Element {
             </div>
             <div className={styles.otherItems}>
                 <div>
-                    <span>&#9729; </span>
-                    <span>{weather?.clouds.all} %</span>
-                </div>
-                <div>
-                    <span>&#9730; </span>
+                    <span>&#x1F4A7; </span>
                     <span>{weather?.clouds.humidity} %</span>
                 </div>
                 <div>
-                <span>&#x1F32C; </span>
-                    <span>{weather?.wind.speed}</span>
+                    <span>&#128065; </span>
+                    <span>{weather?.clouds.visibility} M</span>
+                </div>
+                <div>
+                <span>&#x1F4A8; </span>
+                    <span>{weather?.wind.speed} M/S </span>
+                    <span>{getWindDirection(weather.wind.deg)}</span>
                 </div>
             </div>
         </div>
